@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List-of-medicine</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div th:replace="navbar :: navbar"></div>
+<div class="container">
+    <div class="text-center">
+        <h1>Stock of medicines</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <form class="form-inline" th:action="@{/admin/medicines/search}">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="query" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit"> Search</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="table">
+        <th style="width:5%">#</th>
+        <th style="width:15%">Medicine Name</th>
+        <th style="width:10%">Quantity</th>
+        </thead>
+        <tr th:each="medicine, medicineStat :${medicine}">
+            <td th:text="${medicineStat.count}">1</td>
+            <td th:text="${medicine.name}">Name</td>
+            <td th:text="${medicine.quantity}">Quantity</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="footer :: footer"></div>
+</body>
+</html>
